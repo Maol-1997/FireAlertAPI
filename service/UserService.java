@@ -1,8 +1,8 @@
-package com.github.Maol.FireAlertAPI.service;
+package com.github.Maol.FireAlertAPI.Service;
 
 import com.github.Maol.FireAlertAPI.Repository.IUserRepository;
-import com.github.Maol.FireAlertAPI.exceptions.UserNotFoundException;
-import com.github.Maol.FireAlertAPI.model.User;
+import com.github.Maol.FireAlertAPI.Exception.UserNotFoundException;
+import com.github.Maol.FireAlertAPI.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

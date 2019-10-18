@@ -1,7 +1,7 @@
-package com.github.Maol.FireAlertAPI.controller;
+package com.github.Maol.FireAlertAPI.Controller;
 
-import com.github.Maol.FireAlertAPI.model.UserLocation;
-import com.github.Maol.FireAlertAPI.service.UserLocationService;
+import com.github.Maol.FireAlertAPI.Model.UserLocation;
+import com.github.Maol.FireAlertAPI.Service.UserLocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

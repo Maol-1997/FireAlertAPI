@@ -1,7 +1,7 @@
-package com.github.Maol.FireAlertAPI.controller;
+package com.github.Maol.FireAlertAPI.Controller;
 
-import com.github.Maol.FireAlertAPI.model.UnverifiedFire;
-import com.github.Maol.FireAlertAPI.service.UnverifiedFireService;
+import com.github.Maol.FireAlertAPI.Model.UnverifiedFire;
+import com.github.Maol.FireAlertAPI.Service.UnverifiedFireService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

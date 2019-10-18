@@ -1,4 +1,4 @@
-package com.github.Maol.FireAlertAPI.model;
+package com.github.Maol.FireAlertAPI.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

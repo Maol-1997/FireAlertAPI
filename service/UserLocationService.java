@@ -1,8 +1,8 @@
-package com.github.Maol.FireAlertAPI.service;
+package com.github.Maol.FireAlertAPI.Service;
 
 import com.github.Maol.FireAlertAPI.Repository.IUserLocationRepository;
-import com.github.Maol.FireAlertAPI.exceptions.UserLocationNotFoundException;
-import com.github.Maol.FireAlertAPI.model.UserLocation;
+import com.github.Maol.FireAlertAPI.Exception.UserLocationNotFoundException;
+import com.github.Maol.FireAlertAPI.Model.UserLocation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

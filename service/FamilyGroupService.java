@@ -1,8 +1,8 @@
-package com.github.Maol.FireAlertAPI.service;
+package com.github.Maol.FireAlertAPI.Service;
 
 import com.github.Maol.FireAlertAPI.Repository.IFamilyGroupRepository;
-import com.github.Maol.FireAlertAPI.exceptions.FamilyGroupNotFoundException;
-import com.github.Maol.FireAlertAPI.model.FamilyGroup;
+import com.github.Maol.FireAlertAPI.Exception.FamilyGroupNotFoundException;
+import com.github.Maol.FireAlertAPI.Model.FamilyGroup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

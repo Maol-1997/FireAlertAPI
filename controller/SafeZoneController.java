@@ -1,7 +1,7 @@
-package com.github.Maol.FireAlertAPI.controller;
+package com.github.Maol.FireAlertAPI.Controller;
 
-import com.github.Maol.FireAlertAPI.model.SafeZone;
-import com.github.Maol.FireAlertAPI.service.SafeZoneService;
+import com.github.Maol.FireAlertAPI.Model.SafeZone;
+import com.github.Maol.FireAlertAPI.Service.SafeZoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

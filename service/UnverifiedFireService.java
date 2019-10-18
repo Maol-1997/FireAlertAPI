@@ -1,9 +1,9 @@
-package com.github.Maol.FireAlertAPI.service;
+package com.github.Maol.FireAlertAPI.Service;
 
 import com.github.Maol.FireAlertAPI.Repository.IUnverifiedFireRepository;
-import com.github.Maol.FireAlertAPI.exceptions.UnverifiedFireNotFoundException;
-import com.github.Maol.FireAlertAPI.model.UnverifiedFire;
-import com.github.Maol.FireAlertAPI.model.UserLocation;
+import com.github.Maol.FireAlertAPI.Exception.UnverifiedFireNotFoundException;
+import com.github.Maol.FireAlertAPI.Model.UnverifiedFire;
+import com.github.Maol.FireAlertAPI.Model.UserLocation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

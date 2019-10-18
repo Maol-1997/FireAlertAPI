@@ -1,7 +1,7 @@
-package com.github.Maol.FireAlertAPI.controller;
+package com.github.Maol.FireAlertAPI.Controller;
 
-import com.github.Maol.FireAlertAPI.model.EmergencyNumber;
-import com.github.Maol.FireAlertAPI.service.EmergencyNumberService;
+import com.github.Maol.FireAlertAPI.Model.EmergencyNumber;
+import com.github.Maol.FireAlertAPI.Service.EmergencyNumberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

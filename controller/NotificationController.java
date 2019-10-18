@@ -1,14 +1,16 @@
-package com.github.Maol.FireAlertAPI.controller;
+package com.github.Maol.FireAlertAPI.Controller;
 
-import com.github.Maol.FireAlertAPI.model.DangerZone;
-import com.github.Maol.FireAlertAPI.model.UnverifiedFire;
-import com.github.Maol.FireAlertAPI.service.DangerZoneService;
-import com.github.Maol.FireAlertAPI.service.UnverifiedFireService;
-import com.github.Maol.FireAlertAPI.service.UserService;
+import com.github.Maol.FireAlertAPI.Model.DangerZone;
+import com.github.Maol.FireAlertAPI.Model.DTO.NotificationZoneDTO;
+import com.github.Maol.FireAlertAPI.Model.UnverifiedFire;
+import com.github.Maol.FireAlertAPI.Service.DangerZoneService;
+import com.github.Maol.FireAlertAPI.Service.UnverifiedFireService;
+import com.github.Maol.FireAlertAPI.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,19 +26,22 @@ public class NotificationController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/neardangerzone")
-    public ResponseEntity<DangerZone> nearDangerZone(String login) {
+    @PostMapping("/nearzone")
+    public ResponseEntity<NotificationZoneDTO> nearZone(@RequestBody String login) {
         DangerZone dangerZone = dangerZoneService.check(userService.findByLogin(login).getLocation());
-        if (dangerZone != null)
-            return new ResponseEntity<DangerZone>(dangerZone, HttpStatus.OK);
-        return new ResponseEntity<DangerZone>(new DangerZone(), HttpStatus.NOT_FOUND);
-    }
-
-    @PostMapping("/nearunverifiedfire")
-    public ResponseEntity<UnverifiedFire> nearUnverifiedFire(String login) {
         UnverifiedFire unverifiedFire = unverifiedFireService.check(userService.findByLogin(login).getLocation());
-        if (unverifiedFire != null)
-            return new ResponseEntity<UnverifiedFire>(unverifiedFire, HttpStatus.OK);
-        return new ResponseEntity<UnverifiedFire>(new UnverifiedFire(), HttpStatus.NOT_FOUND);
+        NotificationZoneDTO notificationZoneDTO = new NotificationZoneDTO();
+        if (dangerZone != null) {
+            notificationZoneDTO.setIsnear(true);
+            notificationZoneDTO.setDistance(dangerZone.getDistance());
+        } else if (unverifiedFire != null) {
+            notificationZoneDTO.setIsnear(true);
+            notificationZoneDTO.setDistance(unverifiedFire.getDistance());
+        }
+        if (dangerZone == null && unverifiedFire == null) {
+            notificationZoneDTO.setIsnear(false);
+            notificationZoneDTO.setDistance(0);
+        }
+        return new ResponseEntity<NotificationZoneDTO>(notificationZoneDTO, HttpStatus.OK);
     }
 }

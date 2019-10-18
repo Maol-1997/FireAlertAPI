@@ -1,8 +1,8 @@
-package com.github.Maol.FireAlertAPI.service;
+package com.github.Maol.FireAlertAPI.Service;
 
 import com.github.Maol.FireAlertAPI.Repository.ISafeZoneRepository;
-import com.github.Maol.FireAlertAPI.exceptions.SafeZoneNotFoundException;
-import com.github.Maol.FireAlertAPI.model.SafeZone;
+import com.github.Maol.FireAlertAPI.Exception.SafeZoneNotFoundException;
+import com.github.Maol.FireAlertAPI.Model.SafeZone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
