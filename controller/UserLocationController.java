@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/userlocation")
+@RequestMapping("/api/userlocation")
 public class UserLocationController {
     @Autowired
     private UserLocationService userLocationService;

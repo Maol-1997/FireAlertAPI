@@ -2,6 +2,7 @@ package com.github.Maol.FireAlertAPI.Controller;
 
 import com.github.Maol.FireAlertAPI.Model.User;
 import com.github.Maol.FireAlertAPI.Service.UserService;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
 
     @Autowired
@@ -29,9 +30,13 @@ public class UserController {
     @PostMapping("/")
     public ResponseEntity<User> add(@RequestBody User userDTO) {
         User user = new User();
-        user.setNombre(userDTO.getNombre());
-        user.setApellido(userDTO.getApellido());
+        user.setName(userDTO.getName());
+        user.setLastname(userDTO.getLastname());
         user.setLocation(userDTO.getLocation());
+        user.setToken(userDTO.getToken());
+        user.setPassword(userDTO.getPassword());
+        user.setFriends(userDTO.getFriends());
+        user.setNum(userDTO.getNum());
         return new ResponseEntity<User>(userService.add(user),HttpStatus.OK);
     }
 
@@ -43,9 +48,18 @@ public class UserController {
     @PutMapping("{userId}")
     public ResponseEntity<User> update(@RequestBody User userDTO, @PathVariable Long userId) {
         User user = new User();
-        user.setNombre(userDTO.getNombre());
-        user.setApellido(userDTO.getApellido());
+        user.setName(userDTO.getName());
+        user.setLastname(userDTO.getLastname());
         user.setLocation(userDTO.getLocation());
+        user.setToken(userDTO.getToken());
+        user.setPassword(userDTO.getPassword());
+        user.setFriends(userDTO.getFriends());
+        user.setNum(userDTO.getNum());
         return new ResponseEntity<User>(userService.update(user, userId), HttpStatus.OK);
+    }
+
+    @PostMapping("/friend")
+    public ResponseEntity<User> addFriend(@RequestBody String num,@RequestAttribute("claims") final Claims claims){
+        return new ResponseEntity<User>(userService.addFriend(num,userService.findByNum(claims.getSubject())),HttpStatus.OK);
     }
 }

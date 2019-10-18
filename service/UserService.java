@@ -18,8 +18,33 @@ public class UserService {
     }
 
     public User add(User user) {
+        user.setCode(Hash((user.getName() + user.getLastname()+ System.currentTimeMillis()).toCharArray()));
         userRepository.save(user);
         return user;
+    }
+
+    public User addFriend(String num,User user) {
+        user.getFriends().add(userRepository.findByNum(num));
+        System.out.println(userRepository.findByNum(num));
+        System.out.println(user.getFriends());
+        userRepository.save(user);
+        return user;
+    }
+
+
+    private String Hash(char[] str) {
+        char[] allowedSymbols = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".toCharArray();
+        char[] hash = new char[6];
+
+        for (int i = 0; i < str.length; i++) {
+            hash[i % 6] = (char) (hash[i % 6] ^ str[i]);
+        }
+
+        for (int i = 0; i < 6; i++) {
+            hash[i] = allowedSymbols[hash[i] % allowedSymbols.length];
+        }
+
+        return new String(hash);
     }
 
     public User findById(Long userId) {
@@ -31,16 +56,23 @@ public class UserService {
         return null;
     }
 
+    public boolean exist(String num){
+        return userRepository.existsByNum(num);
+    }
+
     public User update(User newuser, Long userId) {
         return userRepository.findById(userId).map(user -> {
-            user.setNombre(newuser.getNombre());
-            user.setApellido(newuser.getApellido());
+            user.setName(newuser.getName());
+            user.setLastname(newuser.getLastname());
             user.setLocation(newuser.getLocation());
+            user.setCode(Hash((user.getId() + user.getName() + user.getLastname()).toCharArray()));
             return userRepository.save(user);
         }).orElseThrow(() -> new UserNotFoundException(userId));
     }
 
-    public User findByLogin(String login) {
-        return userRepository.findByLogin(login);
+    public User findByNum(String num) {
+        return userRepository.findByNum(num);
     }
+
+
 }

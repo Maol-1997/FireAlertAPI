@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/safezone")
+@RequestMapping("/api/safezone")
 public class SafeZoneController {
     @Autowired
     private SafeZoneService safeZoneService;

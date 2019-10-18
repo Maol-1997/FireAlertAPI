@@ -3,7 +3,7 @@ package com.github.Maol.FireAlertAPI.Model;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 @Entity
@@ -14,19 +14,31 @@ public class User {
     @Column(name = "userId")
     private Long id;
 
-    @Column(name = "login")
-    @NotNull
-    private String login;
+    @Column(name = "num")
+    private String num;
 
-    @Column(name = "nombre")
-    @NotNull
-    private String nombre;
+    @Column(name = "password")
+    private String password;
 
-    @Column(name = "apellido")
-    @NotNull
-    private String apellido;
+    @Column(name = "token")
+    private String token;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "lastname")
+    private String lastname;
+
+    @ManyToMany
+    private List<User> friends;
 
     @OneToOne
     @JoinColumn(name = "locationId")
     private UserLocation location;
+
+    @Column(name = "code")
+    private String code;
+
+    @Column(name = "inDanger")
+    private boolean indanger;
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/emergencynumber")
+@RequestMapping("/api/emergencynumber")
 public class EmergencyNumberController {
     @Autowired
     private EmergencyNumberService emergencyNumberService;

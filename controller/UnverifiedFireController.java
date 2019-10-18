@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/unverifiedfire")
+@RequestMapping("/api/unverifiedfire")
 public class UnverifiedFireController {
     @Autowired
     private UnverifiedFireService unverifiedFireService;
