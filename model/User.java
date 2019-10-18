@@ -14,6 +14,10 @@ public class User {
     @Column(name = "userId")
     private Long id;
 
+    @Column(name = "login")
+    @NotNull
+    private String login;
+
     @Column(name = "nombre")
     @NotNull
     private String nombre;

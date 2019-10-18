@@ -1,8 +1,8 @@
 package com.github.Maol.FireAlertAPI.service;
 
-import com.github.Maol.FireAlertAPI.model.User;
 import com.github.Maol.FireAlertAPI.Repository.IUserRepository;
 import com.github.Maol.FireAlertAPI.exceptions.UserNotFoundException;
+import com.github.Maol.FireAlertAPI.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,5 +38,9 @@ public class UserService {
             user.setLocation(newuser.getLocation());
             return userRepository.save(user);
         }).orElseThrow(() -> new UserNotFoundException(userId));
+    }
+
+    public User findByLogin(String login) {
+        return userRepository.findByLogin(login);
     }
 }

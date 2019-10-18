@@ -3,6 +3,7 @@ package com.github.Maol.FireAlertAPI.service;
 import com.github.Maol.FireAlertAPI.Repository.IDangerZoneRepository;
 import com.github.Maol.FireAlertAPI.exceptions.DangerZoneNotFoundException;
 import com.github.Maol.FireAlertAPI.model.DangerZone;
+import com.github.Maol.FireAlertAPI.model.UserLocation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,5 +39,14 @@ public class DangerZoneService {
             dangerZone.setLongitude(newdangerzone.getLongitude());
             return dangerZoneRepository.save(dangerZone);
         }).orElseThrow(() -> new DangerZoneNotFoundException(dangerZoneId));
+    }
+
+    public DangerZone check(UserLocation userloc){
+        List<DangerZone> dangerZones = findAll();
+        for(DangerZone dan : dangerZones){
+            if(userloc.isNear(dan,dan.dangerZoneDistance()))
+                return dan;//"Beware! There is a wildfire in your proximity at an approximate distance of "+ dan.getDistance();
+        }
+        return null;
     }
 }
