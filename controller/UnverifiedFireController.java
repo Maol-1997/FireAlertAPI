@@ -1,6 +1,9 @@
 package com.github.Maol.FireAlertAPI.Controller;
 
+import com.github.Maol.FireAlertAPI.Model.DangerZone;
+import com.github.Maol.FireAlertAPI.Model.Location;
 import com.github.Maol.FireAlertAPI.Model.UnverifiedFire;
+import com.github.Maol.FireAlertAPI.Service.DangerZoneService;
 import com.github.Maol.FireAlertAPI.Service.UnverifiedFireService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +17,9 @@ import java.util.List;
 public class UnverifiedFireController {
     @Autowired
     private UnverifiedFireService unverifiedFireService;
+
+    @Autowired
+    private DangerZoneService dangerZoneService;
 
     @GetMapping("/")
     public ResponseEntity<List<UnverifiedFire>> findAll() {
@@ -46,5 +52,21 @@ public class UnverifiedFireController {
         unverifiedFire.setLatitude(unverifiedFireDTO.getLatitude());
         unverifiedFire.setReports(unverifiedFireDTO.getReports());
         return new ResponseEntity<UnverifiedFire>(unverifiedFireService.update(unverifiedFire, unverifiedfireId), HttpStatus.OK);
+    }
+
+    @PostMapping("/promotion")
+    public ResponseEntity<Location> promotion(@RequestBody Long unverifiedFireId){
+        UnverifiedFire unverifiedFire = unverifiedFireService.findById(unverifiedFireId);
+        unverifiedFire.setReports(unverifiedFire.getReports()+1);
+        if(unverifiedFire.getReports() >= 3) {
+            DangerZone dangerZone = new DangerZone();
+            dangerZone.setLatitude(unverifiedFire.getLatitude());
+            dangerZone.setLongitude(unverifiedFire.getLongitude());
+            dangerZone.setMagnitud(unverifiedFire.getMagnitud());
+            dangerZoneService.add(dangerZone);
+            unverifiedFireService.delete(unverifiedFireId);
+            return new ResponseEntity<Location>(dangerZone,HttpStatus.OK);
+        }
+        return new ResponseEntity<Location>(unverifiedFireService.update(unverifiedFire,unverifiedFireId),HttpStatus.OK);
     }
 }

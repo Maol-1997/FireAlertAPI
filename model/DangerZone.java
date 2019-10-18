@@ -9,7 +9,7 @@ import javax.persistence.Table;
 @Table(name = "danger_zone")
 @Data
 public class DangerZone  extends Location{
-   enum magnitudlist{
+   public enum magnitudlist{
        LOW,MEDIUM,HIGH,EXTREME
    }
 

@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "unverifiedfire")
 public class UnverifiedFire extends Location {
-    private int reports;
+    private int reports = 0;
+    private DangerZone.magnitudlist magnitud;
     private double distance;
 }
