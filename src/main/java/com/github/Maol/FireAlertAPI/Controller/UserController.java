@@ -1,5 +1,6 @@
 package com.github.Maol.FireAlertAPI.Controller;
 
+import com.github.Maol.FireAlertAPI.Model.DTO.FriendDTO;
 import com.github.Maol.FireAlertAPI.Model.User;
 import com.github.Maol.FireAlertAPI.Service.UserService;
 import io.jsonwebtoken.Claims;
@@ -59,7 +60,7 @@ public class UserController {
     }
 
     @PostMapping("/friend")
-    public ResponseEntity<User> addFriend(@RequestBody String code,@RequestAttribute("claims") final Claims claims){
+    public ResponseEntity<User> addFriend(@RequestBody FriendDTO code, @RequestAttribute("claims") final Claims claims){
         return new ResponseEntity<User>(userService.addFriend(code,userService.findByNum(claims.getSubject())),HttpStatus.OK);
     }
 }

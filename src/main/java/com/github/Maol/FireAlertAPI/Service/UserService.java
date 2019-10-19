@@ -1,8 +1,9 @@
 package com.github.Maol.FireAlertAPI.Service;
 
-import com.github.Maol.FireAlertAPI.Repository.IUserRepository;
 import com.github.Maol.FireAlertAPI.Exception.UserNotFoundException;
+import com.github.Maol.FireAlertAPI.Model.DTO.FriendDTO;
 import com.github.Maol.FireAlertAPI.Model.User;
+import com.github.Maol.FireAlertAPI.Repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +24,12 @@ public class UserService {
         return user;
     }
 
-    public User addFriend(String code, User user) {
-        user.getFriends().add(userRepository.findByCode(code));
+    public User addFriend(FriendDTO code, User user) {
+        user.getFriends().add(userRepository.findByCode(code.getCode()));
         userRepository.save(user);
+        System.out.println(code);
+        System.out.println(userRepository.findByCode(code.getCode()));
+        System.out.println(user);
         return user;
     }
 

@@ -60,7 +60,7 @@ public class UnverifiedFireController {
     public ResponseEntity<Location> promotion(@RequestBody Long unverifiedFireId){
         UnverifiedFire unverifiedFire = unverifiedFireService.findById(unverifiedFireId);
         unverifiedFire.setReports(unverifiedFire.getReports()+1);
-        if(unverifiedFire.getReports() >= 3) {
+        if(unverifiedFire.getReports() >= 2) {
             DangerZone dangerZone = new DangerZone();
             dangerZone.setLatitude(unverifiedFire.getLatitude());
             dangerZone.setLongitude(unverifiedFire.getLongitude());

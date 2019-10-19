@@ -11,7 +11,6 @@ public interface IUserRepository extends JpaRepository<User, Long> {
     @Query("select user from User user where user.num = ?1")
     User findByNum(String num);
 
-    @Query("select user from User user where user.code = ?1")
     User findByCode(String code);
 
     boolean existsByNum(String num);

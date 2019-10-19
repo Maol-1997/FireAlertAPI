@@ -1,6 +1,8 @@
 package com.github.Maol.FireAlertAPI.Controller;
 
 import com.github.Maol.FireAlertAPI.Model.User;
+import com.github.Maol.FireAlertAPI.Model.UserLocation;
+import com.github.Maol.FireAlertAPI.Service.UserLocationService;
 import com.github.Maol.FireAlertAPI.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,12 +18,18 @@ public class UserRegisterController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserLocationService userLocationService;
+
     @PostMapping("/")
     public ResponseEntity<User> add(@RequestBody User userDTO) {
         User user = new User();
         user.setName(userDTO.getName());
         user.setLastname(userDTO.getLastname());
-        user.setLocation(userDTO.getLocation());
+        UserLocation userLocation = new UserLocation();
+        userLocation.setLatitude(0.0);
+        userLocation.setLongitude(0.0);
+        user.setLocation(userLocationService.add(userLocation));
         user.setToken(userDTO.getToken());
         user.setPassword(userDTO.getPassword());
         user.setFriends(userDTO.getFriends());
