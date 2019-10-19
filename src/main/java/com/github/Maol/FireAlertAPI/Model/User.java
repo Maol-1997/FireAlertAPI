@@ -32,9 +32,6 @@ public class User {
     @ManyToMany
     private List<User> friends;
 
-    @OneToMany
-    private List<Place> places;
-
     @OneToOne
     @JoinColumn(name = "locationId")
     private UserLocation location;

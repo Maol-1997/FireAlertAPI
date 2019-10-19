@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,6 +22,13 @@ public class UserController {
     @GetMapping("/")
     public ResponseEntity<List<User>> findAll() {
         return new ResponseEntity<List<User>>(userService.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<User> me(@RequestAttribute("claims") final Claims claims){
+        User user = userService.findByNum(claims.getSubject());
+        user.setFriends(null);
+        return new ResponseEntity<User>(user,HttpStatus.OK);
     }
 
     @GetMapping("/{userId}")
@@ -62,5 +70,15 @@ public class UserController {
     @PostMapping("/friend")
     public ResponseEntity<User> addFriend(@RequestBody FriendDTO code, @RequestAttribute("claims") final Claims claims){
         return new ResponseEntity<User>(userService.addFriend(code,userService.findByNum(claims.getSubject())),HttpStatus.OK);
+    }
+
+    @GetMapping("/friend")
+    public ResponseEntity<List<String>> findFriends(@RequestAttribute("claims") final Claims claims){
+        User user = userService.findByNum(claims.getSubject());
+        List<String> friends = new ArrayList<String>();
+        for(User f : user.getFriends()){
+            friends.add(f.getName());
+        }
+        return new ResponseEntity<List<String>>(friends,HttpStatus.OK);
     }
 }

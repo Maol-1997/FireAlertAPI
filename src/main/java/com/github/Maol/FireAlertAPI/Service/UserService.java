@@ -4,8 +4,10 @@ import com.github.Maol.FireAlertAPI.Exception.UserNotFoundException;
 import com.github.Maol.FireAlertAPI.Model.DTO.FriendDTO;
 import com.github.Maol.FireAlertAPI.Model.User;
 import com.github.Maol.FireAlertAPI.Repository.IUserRepository;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestAttribute;
 
 import java.util.List;
 
@@ -31,6 +33,10 @@ public class UserService {
         System.out.println(userRepository.findByCode(code.getCode()));
         System.out.println(user);
         return user;
+    }
+
+    public User me(@RequestAttribute("claims") final Claims claims){
+       return userRepository.findByNum(claims.getSubject());
     }
 
 
