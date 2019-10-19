@@ -37,6 +37,7 @@ public class UnverifiedFireController {
         unverifiedFire.setLongitude(unverifiedFireDTO.getLongitude());
         unverifiedFire.setLatitude(unverifiedFireDTO.getLatitude());
         unverifiedFire.setReports(unverifiedFireDTO.getReports());
+        unverifiedFire.setMagnitud(unverifiedFireDTO.getMagnitud());
         return new ResponseEntity<UnverifiedFire>(unverifiedFireService.add(unverifiedFire),HttpStatus.OK);
     }
 
@@ -51,6 +52,7 @@ public class UnverifiedFireController {
         unverifiedFire.setLongitude(unverifiedFireDTO.getLongitude());
         unverifiedFire.setLatitude(unverifiedFireDTO.getLatitude());
         unverifiedFire.setReports(unverifiedFireDTO.getReports());
+        unverifiedFire.setMagnitud(unverifiedFireDTO.getMagnitud());
         return new ResponseEntity<UnverifiedFire>(unverifiedFireService.update(unverifiedFire, unverifiedfireId), HttpStatus.OK);
     }
 

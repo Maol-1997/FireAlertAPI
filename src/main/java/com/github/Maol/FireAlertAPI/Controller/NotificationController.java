@@ -65,6 +65,4 @@ public class NotificationController {
         }
         return new ResponseEntity<NotificationFriend>(notificationFriend,HttpStatus.OK);
     }
-
-
 }

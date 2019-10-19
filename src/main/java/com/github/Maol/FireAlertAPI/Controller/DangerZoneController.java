@@ -30,6 +30,8 @@ public class DangerZoneController {
         DangerZone dangerZone = new DangerZone();
         dangerZone.setLongitude(dangerZoneDTO.getLongitude());
         dangerZone.setLatitude(dangerZoneDTO.getLatitude());
+        dangerZone.setMagnitud(dangerZoneDTO.getMagnitud());
+        dangerZone.setDistance(dangerZoneDTO.getDistance());
         return new ResponseEntity<DangerZone>(dangerZoneService.add(dangerZone),HttpStatus.OK);
     }
 

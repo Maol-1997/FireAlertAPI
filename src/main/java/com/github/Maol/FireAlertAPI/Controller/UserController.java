@@ -27,7 +27,7 @@ public class UserController {
         return new ResponseEntity<User>(userService.findById(userId), HttpStatus.OK);
     }
 
-    @PostMapping("/")
+    /*@PostMapping("/")
     public ResponseEntity<User> add(@RequestBody User userDTO) {
         User user = new User();
         user.setName(userDTO.getName());
@@ -38,7 +38,7 @@ public class UserController {
         user.setFriends(userDTO.getFriends());
         user.setNum(userDTO.getNum());
         return new ResponseEntity<User>(userService.add(user),HttpStatus.OK);
-    }
+    }*/
 
     @DeleteMapping("/{userId}")
     public ResponseEntity<Void> delete(@PathVariable Long userId) {
@@ -59,7 +59,7 @@ public class UserController {
     }
 
     @PostMapping("/friend")
-    public ResponseEntity<User> addFriend(@RequestBody String num,@RequestAttribute("claims") final Claims claims){
-        return new ResponseEntity<User>(userService.addFriend(num,userService.findByNum(claims.getSubject())),HttpStatus.OK);
+    public ResponseEntity<User> addFriend(@RequestBody String code,@RequestAttribute("claims") final Claims claims){
+        return new ResponseEntity<User>(userService.addFriend(code,userService.findByNum(claims.getSubject())),HttpStatus.OK);
     }
 }

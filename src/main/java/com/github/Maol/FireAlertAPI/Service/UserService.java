@@ -18,15 +18,13 @@ public class UserService {
     }
 
     public User add(User user) {
-        user.setCode(Hash((user.getName() + user.getLastname()+ System.currentTimeMillis()).toCharArray()));
+        user.setCode(Hash((user.getName() + user.getLastname() + System.currentTimeMillis()).toCharArray()));
         userRepository.save(user);
         return user;
     }
 
-    public User addFriend(String num,User user) {
-        user.getFriends().add(userRepository.findByNum(num));
-        System.out.println(userRepository.findByNum(num));
-        System.out.println(user.getFriends());
+    public User addFriend(String code, User user) {
+        user.getFriends().add(userRepository.findByCode(code));
         userRepository.save(user);
         return user;
     }
@@ -56,7 +54,7 @@ public class UserService {
         return null;
     }
 
-    public boolean exist(String num){
+    public boolean exist(String num) {
         return userRepository.existsByNum(num);
     }
 
@@ -72,6 +70,10 @@ public class UserService {
 
     public User findByNum(String num) {
         return userRepository.findByNum(num);
+    }
+
+    public User findByCode(String code) {
+        return userRepository.findByCode(code);
     }
 
 
